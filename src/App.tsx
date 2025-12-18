@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { SetupScreen } from "./screens/SetupScreen";
 import { GameScreen } from "./screens/GameScreen";
 
