@@ -2,7 +2,7 @@ import React from "react";
 import { useGameStore } from "../store/gameStore";
 import { AddItem } from "../components/AddItem";
 import { Users, Trophy } from "lucide-react";
-import { predefinedChallenges } from "../utils/fastChallenges";
+// import { predefinedChallenges } from "../utils/fastChallenges";
 
 type SetupScreenProps = {
   onStart: () => void;
@@ -20,13 +20,13 @@ export const SetupScreen: React.FC<SetupScreenProps> = ({ onStart }) => {
 
   const canStart = people.length > 0 && challenges.length > 0;
 
-  const addPredefinedChallenges = () => {
-    predefinedChallenges.forEach((challenge) => {
-      if (!challenges.includes(challenge)) {
-        addChallenge(challenge);
-      }
-    });
-  };
+  // const addPredefinedChallenges = () => {
+  //   predefinedChallenges.forEach((challenge) => {
+  //     if (!challenges.includes(challenge)) {
+  //       addChallenge(challenge);
+  //     }
+  //   });
+  // };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center p-4">
