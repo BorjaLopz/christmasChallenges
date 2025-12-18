@@ -58,9 +58,6 @@ export const SetupScreen: React.FC<SetupScreenProps> = ({ onStart }) => {
           <h1 className="text-6xl font-black mb-3 bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
             Alchemy Down
           </h1>
-          <p className="text-purple-300 text-lg font-light">
-            Configura jugadores y retos para empezar la diversión
-          </p>
         </div>
 
         {/* Contenedor principal con glassmorphism */}

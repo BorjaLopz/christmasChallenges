@@ -11,6 +11,7 @@ export const GameScreen: React.FC<GameScreenProps> = ({ onBack }) => {
   const [shuffledPerson, setShuffledPerson] = useState("");
   const [shuffledChallenge, setShuffledChallenge] = useState("");
   const [showResult, setShowResult] = useState(false);
+  const [hasPlayed, setHasPlayed] = useState(false);
 
   const canSpin = challenges.length > 0 && !isSpinning;
 
@@ -18,6 +19,7 @@ export const GameScreen: React.FC<GameScreenProps> = ({ onBack }) => {
   useEffect(() => {
     if (isSpinning) {
       setShowResult(false);
+      setHasPlayed(true);
       const interval = setInterval(() => {
         // Mezclar persona aleatoria
         const randomPerson = people[Math.floor(Math.random() * people.length)];
@@ -29,10 +31,9 @@ export const GameScreen: React.FC<GameScreenProps> = ({ onBack }) => {
         setShuffledChallenge(randomChallenge || "");
       }, 100);
 
+      setShowResult(true);
       // Mostrar resultado después de 2 segundos
-      setTimeout(() => {
-        setShowResult(true);
-      }, 2000);
+      setTimeout(() => {}, 2000);
 
       return () => clearInterval(interval);
     }
@@ -46,10 +47,13 @@ export const GameScreen: React.FC<GameScreenProps> = ({ onBack }) => {
           <div className="inline-flex items-center gap-3 mb-4">
             <Zap className="w-8 h-8 text-yellow-400 animate-pulse" />
             <h1 className="text-5xl font-black bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
-              Alchemy Down
+              Reto Aleatorio
             </h1>
             <Zap className="w-8 h-8 text-yellow-400 animate-pulse" />
           </div>
+          <p className="text-purple-300">
+            Gira la ruleta y descubre el siguiente desafío
+          </p>
         </div>
 
         {/* Tarjeta principal con efecto 3D */}
@@ -65,22 +69,22 @@ export const GameScreen: React.FC<GameScreenProps> = ({ onBack }) => {
           <div className="relative backdrop-blur-xl bg-white/10 border border-white/20 rounded-3xl p-12 shadow-2xl min-h-[320px] flex flex-col items-center justify-center overflow-hidden">
             {isSpinning ? (
               <div className="text-center">
-                <div className="w-24 h-24 mb-6 relative">
+                {/* <div className="w-24 h-24 mb-6 relative">
                   <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-spin"></div>
                   <div className="absolute inset-2 bg-gradient-to-br from-slate-900 to-purple-900 rounded-full flex items-center justify-center">
                     <Shuffle className="w-10 h-10 text-purple-400 animate-pulse" />
                   </div>
-                </div>
+                </div> */}
 
                 {/* Efecto de ruleta - nombres cambiando */}
-                <div className="space-y-4 animate-pulse">
+                <div className="space-y-4">
                   <div>
                     <div className="inline-block px-4 py-1 bg-gradient-to-r from-blue-500/30 to-cyan-500/30 border border-blue-400/40 rounded-full mb-2">
                       <span className="text-xs font-semibold text-blue-300 uppercase tracking-wider">
                         Jugador
                       </span>
                     </div>
-                    <h2 className="text-3xl font-black text-white blur-sm animate-bounce">
+                    <h2 className="text-3xl font-black text-white blur-sm">
                       {shuffledPerson || "???"}
                     </h2>
                   </div>
@@ -136,7 +140,7 @@ export const GameScreen: React.FC<GameScreenProps> = ({ onBack }) => {
                   </p>
                 </div>
               </div>
-            ) : (
+            ) : !hasPlayed ? (
               <div className="text-center">
                 <div className="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center mb-6 mx-auto">
                   <Sparkles className="w-10 h-10 text-purple-400" />
@@ -145,7 +149,7 @@ export const GameScreen: React.FC<GameScreenProps> = ({ onBack }) => {
                   Pulsa el botón para comenzar
                 </p>
               </div>
-            )}
+            ) : null}
           </div>
         </div>
 
@@ -157,7 +161,7 @@ export const GameScreen: React.FC<GameScreenProps> = ({ onBack }) => {
               onClick={onBack}
               className="w-full h-16 rounded-2xl font-bold text-lg transition-all duration-300 transform bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 hover:from-purple-600 hover:via-pink-600 hover:to-purple-600 text-white shadow-2xl hover:shadow-purple-500/50 hover:scale-[1.02] active:scale-[0.98]"
             >
-              🎉 ¡Juego completado! Volver a configuración
+              No quedan más retos. ¿Nueva partida?
             </button>
           ) : (
             <button
@@ -169,7 +173,7 @@ export const GameScreen: React.FC<GameScreenProps> = ({ onBack }) => {
                   : "bg-slate-700 text-slate-500 cursor-not-allowed"
               }`}
             >
-              🎲 Siguiente Reto
+              Siguiente Reto
             </button>
           )}
 
