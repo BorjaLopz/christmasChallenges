@@ -7,7 +7,7 @@ export default function App() {
   const [started, setStarted] = useState(false);
 
   return started ? (
-    <GameScreen />
+    <GameScreen onBack={() => setStarted(false)} />
   ) : (
     <SetupScreen onStart={() => setStarted(true)} />
   );
