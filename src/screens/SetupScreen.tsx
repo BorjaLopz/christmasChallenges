@@ -2,6 +2,7 @@ import React from "react";
 import { useGameStore } from "../store/gameStore";
 import { AddItem } from "../components/AddItem";
 import { Users, Trophy } from "lucide-react";
+import { predefinedChallenges } from "../utils/fastChallenges";
 
 type SetupScreenProps = {
   onStart: () => void;
@@ -18,24 +19,6 @@ export const SetupScreen: React.FC<SetupScreenProps> = ({ onStart }) => {
   } = useGameStore();
 
   const canStart = people.length > 0 && challenges.length > 0;
-
-  // Retos predefinidos
-  const predefinedChallenges = [
-    // "Bebe 2 tragos",
-    // "Cuenta una anécdota vergonzosa",
-    // "Imita a alguien de la sala",
-    // "Verdad o reto: elige",
-    // "Baila durante 30 segundos",
-    // "Habla con acento durante 1 minuto",
-    // "Haz 10 flexiones",
-    // "Canta una canción",
-    // "Bebe un chupito",
-    // "Di un trabalenguas 3 veces",
-    // "Intercambia ropa con alguien",
-    // "Cuenta un chiste",
-    "Preguntar a Del Piero si está buscando algo",
-    "Mano en el hombre baúl",
-  ];
 
   const addPredefinedChallenges = () => {
     predefinedChallenges.forEach((challenge) => {
@@ -97,12 +80,12 @@ export const SetupScreen: React.FC<SetupScreenProps> = ({ onStart }) => {
                     {challenges.length} añadidos
                   </p>
                 </div>
-                <button
+                {/* <button
                   onClick={addPredefinedChallenges}
                   className="px-4 py-2 bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 rounded-lg text-white text-sm font-semibold transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg whitespace-nowrap"
                 >
                   ⚡ Retos rápidos
-                </button>
+                </button> */}
               </div>
               <AddItem
                 placeholder="Escribe un reto"
