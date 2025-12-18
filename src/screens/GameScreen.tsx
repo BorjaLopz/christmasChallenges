@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useGameStore } from "../store/gameStore";
-import { Sparkles, Zap, ArrowLeft, Shuffle } from "lucide-react";
+import { Sparkles, Zap, ArrowLeft } from "lucide-react";
 
 type GameScreenProps = {
   onBack: () => void;
