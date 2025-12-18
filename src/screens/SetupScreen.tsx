@@ -19,6 +19,32 @@ export const SetupScreen: React.FC<SetupScreenProps> = ({ onStart }) => {
 
   const canStart = people.length > 0 && challenges.length > 0;
 
+  // Retos predefinidos
+  const predefinedChallenges = [
+    // "Bebe 2 tragos",
+    // "Cuenta una anécdota vergonzosa",
+    // "Imita a alguien de la sala",
+    // "Verdad o reto: elige",
+    // "Baila durante 30 segundos",
+    // "Habla con acento durante 1 minuto",
+    // "Haz 10 flexiones",
+    // "Canta una canción",
+    // "Bebe un chupito",
+    // "Di un trabalenguas 3 veces",
+    // "Intercambia ropa con alguien",
+    // "Cuenta un chiste",
+    "Preguntar a Del Piero si está buscando algo",
+    "Mano en el hombre baúl",
+  ];
+
+  const addPredefinedChallenges = () => {
+    predefinedChallenges.forEach((challenge) => {
+      if (!challenges.includes(challenge)) {
+        addChallenge(challenge);
+      }
+    });
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center p-4">
       <div className="w-full max-w-4xl">
@@ -68,12 +94,18 @@ export const SetupScreen: React.FC<SetupScreenProps> = ({ onStart }) => {
                 <div className="w-12 h-12 bg-gradient-to-br from-pink-500 to-rose-500 rounded-xl flex items-center justify-center shadow-lg">
                   <Trophy className="w-6 h-6 text-white" />
                 </div>
-                <div>
+                <div className="flex-1">
                   <h2 className="text-2xl font-bold text-white">Retos</h2>
                   <p className="text-sm text-purple-300">
                     {challenges.length} añadidos
                   </p>
                 </div>
+                <button
+                  onClick={addPredefinedChallenges}
+                  className="px-4 py-2 bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 rounded-lg text-white text-sm font-semibold transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg whitespace-nowrap"
+                >
+                  ⚡ Retos rápidos
+                </button>
               </div>
               <AddItem
                 placeholder="Escribe un reto"
